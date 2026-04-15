@@ -1,0 +1,6 @@
+{
+  "name": "SyncWithPari",
+  "description": "Real-time AI agent that searches, verifies, and monitors the web to provide cited, hallucination-free answers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

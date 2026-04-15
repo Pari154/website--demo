@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile and settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Research": {
+      "title": "Research",
+      "description": "Historical research queries and results",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "query": { "type": "string" },
+        "answer": { "type": "string" },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        },
+        "thinking": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "query", "answer", "createdAt"]
+    },
+    "Monitor": {
+      "title": "Monitor",
+      "description": "Active monitoring tasks",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "query": { "type": "string" },
+        "frequency": { "type": "string", "enum": ["daily", "weekly"] },
+        "status": { "type": "string", "enum": ["active", "paused"] },
+        "lastCheck": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "query", "frequency", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile documents"
+    },
+    "/research/{researchId}": {
+      "schema": "Research",
+      "description": "Research history documents"
+    },
+    "/monitors/{monitorId}": {
+      "schema": "Monitor",
+      "description": "Active monitoring task documents"
+    }
+  }
+}
